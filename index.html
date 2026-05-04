@@ -1,115 +1,576 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FundSight</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FundSight</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #f5f7fa;
-            color: #333;
-        }
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        header {
-            background-color: #0a2540;
-            color: white;
-            padding: 40px;
-            text-align: center;
-        }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f6f8fb;
+      color: #1f2937;
+      line-height: 1.6;
+    }
 
-        section {
-            padding: 40px;
-            max-width: 900px;
-            margin: auto;
-        }
+    header {
+      background: linear-gradient(135deg, #071a2f, #0f766e);
+      color: white;
+      padding: 40px 8% 90px;
+      text-align: center;
+    }
 
-        h1, h2 {
-            margin-bottom: 15px;
-        }
+    header h1 {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
 
-        .card {
-            background: white;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+    header p {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
 
-        ul {
-            line-height: 1.8;
-        }
+    nav {
+      background: white;
+      padding: 18px 8%;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      text-align: center;
+    }
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #0a2540;
-            color: white;
-            margin-top: 40px;
-        }
-    </style>
+    nav a {
+      color: #0f766e;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 10px;
+      font-size: 14px;
+    }
+
+    section {
+      padding: 70px 8%;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .card {
+      background: white;
+      padding: 32px;
+      border-radius: 22px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      margin-bottom: 28px;
+    }
+
+    h2 {
+      font-size: 32px;
+      color: #0f766e;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 20px 0 10px;
+      color: #111827;
+    }
+
+    p {
+      margin-bottom: 14px;
+    }
+
+    ul {
+      margin-left: 24px;
+      margin-bottom: 18px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .highlight {
+      background: #ecfdf5;
+      border-left: 5px solid #0f766e;
+      padding: 18px;
+      border-radius: 12px;
+      font-weight: bold;
+      margin-top: 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 20px;
+    }
+
+    .mini-card {
+      background: #f9fafb;
+      padding: 22px;
+      border-radius: 18px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .step {
+      background: #f9fafb;
+      padding: 20px;
+      border-radius: 18px;
+      text-align: center;
+      border: 1px solid #e5e7eb;
+    }
+
+    .number {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #0f766e;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      font-weight: bold;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 16px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+    }
+
+    th {
+      background: #0f766e;
+      color: white;
+    }
+
+    footer {
+      background: #071a2f;
+      color: white;
+      text-align: center;
+      padding: 40px 8%;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 900px) {
+      header h1 {
+        font-size: 36px;
+      }
+
+      .grid, .steps {
+        grid-template-columns: 1fr;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 6px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-    <h1>FundSight</h1>
-    <p>Turning Active ETF Behavior into Investment Signals</p>
+<header id="cover">
+  <h1>FundSight: Interpreting Active ETF Manager Behavior</h1>
+  <p><strong>Tagline:</strong> Turning active ETF holdings into actionable investment signals</p>
+  <p><strong>Subtitle:</strong> Not just what they buy — but how and why it matters</p>
 </header>
 
-<section>
-    <div class="card">
-        <h2>Problem</h2>
-        <p>
-            Retail investors face overwhelming financial data but lack the ability to interpret it effectively.
-            Active ETF holdings are transparent, but difficult to understand.
-        </p>
-    </div>
+<nav>
+  <a href="#problem">Problem</a>
+  <a href="#solution">Solution</a>
+  <a href="#how">How It Works</a>
+  <a href="#users">Users</a>
+  <a href="#traction">Traction</a>
+  <a href="#business">Business</a>
+  <a href="#market">Market</a>
+  <a href="#competition">Competition</a>
+  <a href="#summary">Summary</a>
+</nav>
 
-    <div class="card">
-        <h2>Solution</h2>
-        <p>
-            FundSight tracks active ETF holdings and translates manager behavior into simple, actionable investment signals.
-        </p>
+<section id="problem">
+  <div class="card">
+    <h2>1. Problem</h2>
+    <h3>Information Overload & Lack of Interpretation</h3>
+    <ul>
+      <li>Retail investors face excessive financial data, including EPS, technicals, news, and market sentiment.</li>
+      <li>Most lack the ability to identify what truly matters.</li>
+      <li>Many rely on market sentiment or follow trends blindly.</li>
+    </ul>
+
+    <h3>Active ETFs are transparent, but not understandable</h3>
+    <p>Investors can see holdings, but cannot interpret:</p>
+    <ul>
+      <li>Why positions are added</li>
+      <li>Whether changes are significant</li>
+      <li>If it is worth following</li>
+    </ul>
+
+    <div class="highlight">
+      Key Problem: Professional investment decisions exist in public data, but retail investors cannot translate them into usable insights.
+    </div>
+  </div>
+</section>
+
+<section id="solution">
+  <div class="card">
+    <h2>2. Solution</h2>
+    <h3>A Platform that Translates ETF Manager Behavior into Signals</h3>
+    <p>We convert raw ETF holdings into structured, interpretable investment insights.</p>
+
+    <div class="grid">
+      <div class="mini-card">
+        <h3>Behavior Tracking</h3>
         <ul>
-            <li>Track ETF position changes</li>
-            <li>Convert behavior into signals</li>
-            <li>Filter using fundamentals and technicals</li>
+          <li>New positions</li>
+          <li>Position increases</li>
+          <li>Reductions</li>
+          <li>Full exits</li>
         </ul>
-    </div>
+      </div>
 
-    <div class="card">
-        <h2>How It Works</h2>
+      <div class="mini-card">
+        <h3>Signal Scoring System</h3>
         <ul>
-            <li>Collect ETF holding data</li>
-            <li>Detect position changes</li>
-            <li>Score behavior signals</li>
-            <li>Apply filters</li>
-            <li>Generate insights</li>
+          <li>Magnitude of change</li>
+          <li>ETF performance quality</li>
+          <li>Multi-ETF consensus</li>
+          <li>Position significance</li>
         </ul>
-    </div>
+      </div>
 
-    <div class="card">
-        <h2>Target Users</h2>
+      <div class="mini-card">
+        <h3>Multi-layer Filtering</h3>
         <ul>
-            <li>Beginner investors</li>
-            <li>Retail investors</li>
-            <li>Financial platforms (B2B)</li>
+          <li>Fundamental indicators, such as EPS and revenue growth</li>
+          <li>Valuation metrics</li>
+          <li>Technical trends</li>
         </ul>
+      </div>
     </div>
 
-    <div class="card">
-        <h2>Key Idea</h2>
-        <p>
-            We don’t help users copy trades — we help them understand how professionals think.
-        </p>
+    <div class="highlight">
+      Not copying trades — interpreting decisions.
     </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="card">
+    <h2>3. How It Works</h2>
+
+    <div class="steps">
+      <div class="step">
+        <div class="number">1</div>
+        <h3>Data Collection</h3>
+        <p>Track active ETF holdings, historical changes, and stock fundamentals.</p>
+      </div>
+
+      <div class="step">
+        <div class="number">2</div>
+        <h3>Behavior Detection</h3>
+        <p>Identify position changes: add, increase, reduce, or exit.</p>
+      </div>
+
+      <div class="step">
+        <div class="number">3</div>
+        <h3>Signal Construction</h3>
+        <p>Quantify manager actions into a scoring system.</p>
+      </div>
+
+      <div class="step">
+        <div class="number">4</div>
+        <h3>Filtering Layer</h3>
+        <p>Apply fundamental and technical filters.</p>
+      </div>
+
+      <div class="step">
+        <div class="number">5</div>
+        <h3>Output Insights</h3>
+        <p>Generate simple signals for users.</p>
+      </div>
+    </div>
+
+    <h3>Output Signals</h3>
+    <ul>
+      <li>Strong Signal</li>
+      <li>Watchlist</li>
+      <li>Neutral</li>
+      <li>High Risk</li>
+    </ul>
+  </div>
+</section>
+
+<section id="users">
+  <div class="card">
+    <h2>4. Target Users</h2>
+
+    <div class="grid">
+      <div class="mini-card">
+        <h3>Primary Users</h3>
+        <ul>
+          <li>Beginner investors</li>
+          <li>Young / retail investors</li>
+          <li>Users with limited time and financial knowledge</li>
+        </ul>
+      </div>
+
+      <div class="mini-card">
+        <h3>Secondary Users</h3>
+        <ul>
+          <li>Intermediate investors</li>
+          <li>Users seeking faster decision-making tools</li>
+        </ul>
+      </div>
+
+      <div class="mini-card">
+        <h3>B2B Opportunities</h3>
+        <ul>
+          <li>Broker platforms</li>
+          <li>Banks / wealth management</li>
+          <li>Financial education platforms</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="traction">
+  <div class="card">
+    <h2>5. Traction / Validation</h2>
+
+    <h3>Current Stage: MVP Design & Concept Validation</h3>
+
+    <h3>Planned Validation Approach</h3>
+    <ul>
+      <li>Analyze selected active ETFs</li>
+      <li>Track holding changes over time</li>
+      <li>Backtest signal effectiveness</li>
+    </ul>
+
+    <h3>Key Hypotheses</h3>
+    <ul>
+      <li>Stocks bought by multiple high-performing ETFs outperform.</li>
+      <li>Large position increases signal stronger conviction.</li>
+      <li>New positions contain stronger signals than existing ones.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="business">
+  <div class="card">
+    <h2>6. Business Model</h2>
+
+    <div class="grid">
+      <div class="mini-card">
+        <h3>Freemium Model</h3>
+        <ul>
+          <li>Free: basic signals and ETF tracking</li>
+          <li>Paid: advanced analytics and scoring</li>
+        </ul>
+      </div>
+
+      <div class="mini-card">
+        <h3>Subscription</h3>
+        <ul>
+          <li>Monthly / annual plans</li>
+          <li>Premium investment insights</li>
+        </ul>
+      </div>
+
+      <div class="mini-card">
+        <h3>B2B Integration</h3>
+        <ul>
+          <li>API for brokers and financial platforms</li>
+          <li>Financial product integration</li>
+          <li>Brokerage referrals</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="market">
+  <div class="card">
+    <h2>7. Market Opportunity</h2>
+
+    <h3>Growing Retail Investment Market</h3>
+    <ul>
+      <li>Increasing ETF adoption</li>
+      <li>Rising demand for simplified investing tools</li>
+      <li>Growth in AI-driven financial decision tools</li>
+    </ul>
+
+    <h3>Market Gap</h3>
+    <ul>
+      <li>Plenty of data</li>
+      <li>Lack of interpretation</li>
+    </ul>
+
+    <div class="highlight">
+      We bridge the gap between data and decision.
+    </div>
+  </div>
+</section>
+
+<section id="competition">
+  <div class="card">
+    <h2>8. Competition</h2>
+
+    <table>
+      <tr>
+        <th>Category</th>
+        <th>Examples</th>
+        <th>Weakness</th>
+      </tr>
+      <tr>
+        <td>Brokerage Apps</td>
+        <td>Stock data, charts</td>
+        <td>No interpretation</td>
+      </tr>
+      <tr>
+        <td>Financial Websites</td>
+        <td>ETF holdings, news</td>
+        <td>Fragmented information</td>
+      </tr>
+      <tr>
+        <td>Robo-advisors</td>
+        <td>Portfolio allocation</td>
+        <td>Black-box logic</td>
+      </tr>
+      <tr>
+        <td>Social Media</td>
+        <td>YouTube, forums</td>
+        <td>Low reliability</td>
+      </tr>
+    </table>
+
+    <h3>Our Advantage</h3>
+    <ul>
+      <li>Behavior-based analysis</li>
+      <li>Multi-ETF consensus signals</li>
+      <li>Clear and interpretable scoring</li>
+      <li>Combines fundamentals and technicals</li>
+    </ul>
+
+    <div class="highlight">
+      We explain decisions, not just show data.
+    </div>
+  </div>
+</section>
+
+<section id="financials">
+  <div class="card">
+    <h2>9. Financials</h2>
+
+    <div class="grid">
+      <div class="mini-card">
+        <h3>Year 1</h3>
+        <ul>
+          <li>Product development</li>
+          <li>No significant revenue</li>
+        </ul>
+      </div>
+
+      <div class="mini-card">
+        <h3>Year 2</h3>
+        <ul>
+          <li>Subscription model launch</li>
+          <li>Early B2B partnerships</li>
+        </ul>
+      </div>
+
+      <div class="mini-card">
+        <h3>Year 3</h3>
+        <ul>
+          <li>Platform scaling</li>
+          <li>Stable recurring revenue</li>
+          <li>Institutional integration</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="card">
+    <h2>10. Team</h2>
+
+    <h3>Core Strengths</h3>
+    <ul>
+      <li>Quantitative Finance background</li>
+      <li>Strong understanding of financial markets</li>
+      <li>Data analysis skills, including Python and R</li>
+      <li>Experience in investment analysis</li>
+    </ul>
+
+    <div class="highlight">
+      We bridge finance and data to create usable tools.
+    </div>
+  </div>
+</section>
+
+<section id="funding">
+  <div class="card">
+    <h2>11. Funding</h2>
+
+    <h3>Stage: Concept / MVP</h3>
+
+    <h3>Funding Use</h3>
+    <ul>
+      <li>40% Data infrastructure</li>
+      <li>30% Product development</li>
+      <li>20% Model and backtesting</li>
+      <li>10% User testing</li>
+    </ul>
+  </div>
+</section>
+
+<section id="summary">
+  <div class="card">
+    <h2>12. Summary</h2>
+
+    <p>
+      FundSight transforms professional investment behavior into simple, actionable signals.
+    </p>
+
+    <p>By analyzing active ETF manager decisions, we help investors:</p>
+
+    <ul>
+      <li>Reduce information overload</li>
+      <li>Improve decision quality</li>
+      <li>Avoid blind trend-following</li>
+    </ul>
+
+    <div class="highlight">
+      From data → to behavior → to better decisions.
+    </div>
+  </div>
 </section>
 
 <footer>
-    <p>© 2026 FundSight | Built with GitHub Pages</p>
+  <p>© 2026 FundSight. Built for smarter investment decisions.</p>
 </footer>
 
 </body>
